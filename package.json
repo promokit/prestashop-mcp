@@ -7,7 +7,9 @@
   "scripts": {
     "build": "tsc",
     "start": "node build/index.js",
-    "dev": "tsx src/index.ts"
+    "dev": "tsx src/index.ts",
+    "watch": "tsx --watch src/index.ts",
+    "inspector": "npx @modelcontextprotocol/inspector node build/index.js"
   },
   "keywords": [
     "mcp",
@@ -18,6 +20,7 @@
   "author": "Promokit",
   "license": "MIT",
   "dependencies": {
+    "@modelcontextprotocol/inspector": "^0.15.0",
     "@modelcontextprotocol/sdk": "^1.15.1",
     "axios": "^1.6.0",
     "dotenv": "^17.2.0",
