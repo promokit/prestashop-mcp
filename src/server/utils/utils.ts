@@ -1,3 +1,5 @@
+import { ToolResponse } from "../types/Tools";
+
 export function formatResponse(data: any, count: number, entityName: string): string {
   return `Retrieved ${count} ${entityName}:\n${JSON.stringify(data, null, 2)}`;
 }
@@ -10,7 +12,7 @@ export function formatSuccessMessage(message: string): string {
   return `Successfully ${message}`;
 }
 
-export function createTextContent(text: string) {
+export function createTextContent(text: string): ToolResponse {
   return {
     content: [
       {

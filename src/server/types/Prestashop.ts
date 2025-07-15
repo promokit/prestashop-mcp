@@ -1,3 +1,5 @@
+export type Resources = 'addresses' | 'attachments' | 'carriers' | 'cart_rules' | 'carts' | 'categories' | 'combinations' | 'configurations' | 'contacts' | 'content_management_system' | 'countries' | 'currencies' | 'customer_messages' | 'customer_threads' | 'customers' | 'customizations' | 'deliveries' | 'employees' | 'groups' | 'guests' | 'image_types' | 'images' | 'languages' | 'manufacturers' | 'messages' | 'order_carriers' | 'order_cart_rules' | 'order_details' | 'order_histories' | 'order_invoices' | 'order_payments' | 'order_returns' | 'order_slip' | 'order_states' | 'orders' | 'price_ranges' | 'product_customization_fields' | 'product_feature_values' | 'product_features' | 'product_option_values' | 'product_options' | 'product_suppliers' | 'products' | 'search' | 'shop_groups' | 'shop_urls' | 'shops' | 'specific_price_rules' | 'specific_prices' | 'states' | 'stock_availables' | 'stock_movement_reasons' | 'stock_movements' | 'stocks' | 'stores' | 'suppliers' | 'tags' | 'tax_rule_groups' | 'tax_rules' | 'taxes' | 'translated_configurations' | 'warehouses' | 'weight_ranges' | 'zones';
+
 export interface Product {
   id: string;
   name: string;
@@ -63,9 +65,7 @@ export interface ApiResponse<T> {
 }
 
 export interface ProductsResponse {
-  products: {
-    product: Product[];
-  };
+  products: Product[];
 }
 
 export interface OrdersResponse {

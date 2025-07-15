@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "node build/index.js",
+    "start": "node --inspect build/index.js",
     "dev": "tsx src/index.ts",
     "watch": "tsx --watch src/index.ts",
     "inspector": "npx @modelcontextprotocol/inspector node build/index.js"
@@ -19,6 +19,9 @@
   ],
   "author": "Promokit",
   "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "dependencies": {
     "@modelcontextprotocol/inspector": "^0.15.0",
     "@modelcontextprotocol/sdk": "^1.15.1",
@@ -28,6 +31,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
+    "prettier": "^3.6.2",
     "tsx": "^4.0.0",
     "typescript": "^5.0.0"
   },
