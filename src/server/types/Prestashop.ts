@@ -64,6 +64,10 @@ export interface ApiResponse<T> {
   prestashop: T;
 }
 
+export interface ProductResponse {
+  product: Product[];
+}
+
 export interface ProductsResponse {
   products: Product[];
 }

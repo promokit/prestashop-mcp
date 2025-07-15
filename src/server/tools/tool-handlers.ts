@@ -8,7 +8,7 @@ import {
     extractArrayLength,
     validateRequiredParams,
 } from '../utils/utils.js';
-import { ProductsResponse } from '../types/Prestashop.js';
+import type { ProductResponse, ProductsResponse } from '../types/Prestashop.js';
 import { ToolFn, ToolResponse } from '../types/Tools.js';
 
 const fetchResource = async <T>(
@@ -34,9 +34,9 @@ const getProducts: ToolFn = async (api, args): Promise<ToolResponse> => {
 const getProductDetails: ToolFn = async (api, args): Promise<ToolResponse> => {
     validateRequiredParams(args, ['product_id']);
     const { product_id } = args;
-    const parsed = await fetchResource<ProductsResponse>(api, `products/${product_id}`);
+    const parsed = await fetchResource<ProductResponse>(api, `products/${product_id}`);
     return createTextContent(
-        formatDetailResponse(parsed?.products, product_id, 'Product')
+        formatDetailResponse(parsed?.product, product_id, 'Product')
     );
 };
 

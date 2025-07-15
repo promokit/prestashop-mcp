@@ -28,23 +28,24 @@ export const toolDefinitions: Record<string, ToolDefinition> = {
             },
         },
     },
-    // 'get_product_details': {
-    //     name: 'get_product_details',
-    //     description: 'Get detailed information about a specific product',
-    //     label: 'Product Details',
-    //     resource: 'products',
-    //     handler: getProductDetails,
-    //     inputSchema: {
-    //         type: 'object',
-    //         properties: {
-    //             product_id: {
-    //                 type: 'number',
-    //                 description: 'Product ID',
-    //             },
-    //         },
-    //         required: ['product_id'],
-    //     },
-    // },
+    'get_product_details': {
+        name: 'get_product_details',
+        description: 'Get detailed information about a specific product',
+        label: 'Product Details',
+        resource: 'products',
+        handlerName: 'getProductDetails',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                product_id: {
+                    type: 'number',
+                    description: 'Product ID',
+                    default: 1
+                },
+            },
+            required: ['product_id'],
+        },
+    },
             // {
             //     name: 'get_orders',
             //     description: 'Retrieve orders from PrestaShop store',
