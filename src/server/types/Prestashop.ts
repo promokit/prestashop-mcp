@@ -85,9 +85,7 @@ export interface CustomersResponse {
 }
 
 export interface CategoriesResponse {
-  categories: {
-    category: Category[];
-  };
+  categories: Category[];
 }
 
 export interface OrderStatesResponse {

@@ -60,11 +60,19 @@ export class PrestaShopAPI {
 
         Object.entries(params).forEach(([key, value]) => {
             if (value !== undefined && value !== null) {
-                if (key === 'filter') {
-                    const [filterBy, filterValues] = value.split('=');
-                    url.searchParams.append(`${key}${filterBy}`, filterValues);
-                } else {
-                    url.searchParams.append(key, String(value));
+                switch (key) {
+                    case 'filter':
+                        if (typeof value === 'string') {
+                            const [filterBy, filterValues] = value.split('=');
+                            url.searchParams.append(`filter[${filterBy}]`, filterValues);
+                        } else if (typeof value === 'object') {
+                            Object.entries(value).forEach(([field, filterValue]) => {
+                                url.searchParams.append(`filter[${field}]`, String(filterValue));
+                            });
+                        }
+                        break;
+                    default:
+                        url.searchParams.append(key, String(value));
                 }
             }
         });

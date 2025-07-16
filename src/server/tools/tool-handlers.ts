@@ -8,7 +8,7 @@ import {
     extractArrayLength,
     validateRequiredParams,
 } from '../utils/utils.js';
-import type { ProductResponse, ProductsResponse } from '../types/Prestashop.js';
+import type { CategoriesResponse, ProductResponse, ProductsResponse } from '../types/Prestashop.js';
 import { ToolFn, ToolResponse } from '../types/Tools.js';
 
 const fetchResource = async <T>(
@@ -36,8 +36,18 @@ const getProductDetails: ToolFn = async (api, args): Promise<ToolResponse> => {
     const { product_id } = args;
     const parsed = await fetchResource<ProductResponse>(api, `products/${product_id}`);
     return createTextContent(
-        formatDetailResponse(parsed?.product, product_id, 'Product')
+        formatDetailResponse(parsed.product, product_id, 'Product')
     );
+};
+
+const getCategories: ToolFn = async (api, args): Promise<ToolResponse> => {
+    const { limit = 10, filter } = args;
+    const parsed = await fetchResource<CategoriesResponse>(api, 'categories', { limit, filter });
+    const count = parsed.categories.length || 0;
+
+    const text = formatResponse(parsed.categories, count, 'categories');
+
+    return createTextContent(text);
 };
 
 const getOrders: ToolFn = async (api, args) => {
@@ -105,19 +115,6 @@ const updateProductStock: ToolFn = async (api, args) => {
     );
 };
 
-const getCategories: ToolFn = async (api, args) => {
-    const { limit = 10, filter } = args;
-    const resource = api.buildResourceUrl('categories', { limit, filter });
-
-    const response = await api.callAPI(resource);
-    const parsed = api.parseXMLResponse(response.data);
-
-    const count = extractArrayLength(parsed.prestashop, ['categories', 'category']);
-    const text = formatResponse(parsed.prestashop?.categories, count, 'categories');
-
-    return createTextContent(text);
-};
-
 const getOrderStates: ToolFn = async (api, args) => {
     const response = await api.callAPI('order_states');
     const parsed = api.parseXMLResponse(response.data);
@@ -128,5 +125,6 @@ const getOrderStates: ToolFn = async (api, args) => {
 
 export const handlerRegistry: Record<string, ToolFn> = {
   getProducts,
-  getProductDetails
+  getProductDetails,
+  getCategories
 };

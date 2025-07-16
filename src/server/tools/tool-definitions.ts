@@ -46,6 +46,32 @@ export const toolDefinitions: Record<string, ToolDefinition> = {
             required: ['product_id'],
         },
     },
+    'get_categories': {
+        name: 'get_categories',
+        description: 'Retrieve product categories',
+        label: 'Categories',
+        resource: 'categories',
+        handlerName: 'getCategories',
+        inputSchema: {
+            type: 'object',
+            properties: {
+                limit: {
+                    type: 'number',
+                    description: 'Number of categories to retrieve (default: 10)',
+                    default: 10,
+                },
+                filter: {
+                    type: 'string',
+                    description: 'Filter criteria',
+                },
+                display: {
+                    type: 'string',
+                    description: 'Comma-separated list of fields to display (e.g. "[id,name]" or "full")',
+                    default: '[id,name]'
+                },
+            },
+        },
+    },
             // {
             //     name: 'get_orders',
             //     description: 'Retrieve orders from PrestaShop store',
@@ -116,24 +142,6 @@ export const toolDefinitions: Record<string, ToolDefinition> = {
             //             },
             //         },
             //         required: ['product_id', 'quantity'],
-            //     },
-            // },
-            // {
-            //     name: 'get_categories',
-            //     description: 'Retrieve product categories',
-            //     inputSchema: {
-            //         type: 'object',
-            //         properties: {
-            //             limit: {
-            //                 type: 'number',
-            //                 description: 'Number of categories to retrieve (default: 10)',
-            //                 default: 10,
-            //             },
-            //             filter: {
-            //                 type: 'string',
-            //                 description: 'Filter criteria',
-            //             },
-            //         },
             //     },
             // },
             // {
